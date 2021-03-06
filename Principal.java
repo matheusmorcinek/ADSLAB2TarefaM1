@@ -24,7 +24,10 @@ public class Principal {
     public static void main(String[] args) {
 
         JogoDaVelha jv = new JogoDaVelha(3);
-        jv.toString();
+        // jv.toString();
+
+        jv.verificaGanhador();
+    //    System.out.println();
 
         // char[][] arr = new char[][]{{'a','b','c'},{'d','e','f'},{'g','h','i'}};
 
