@@ -36,37 +36,43 @@ public class JogoDaVelha {
 
     private int dimensao;
     private char[][] tabuleiro;
+    private int jogadasRestantes;
 
     public JogoDaVelha(int dimensao) {
 
         this.dimensao = dimensao;
-        // tabuleiro = new char[dimensao][dimensao];
+        this.jogadasRestantes = dimensao * dimensao;
+        tabuleiro = new char[dimensao][dimensao];
         // tabuleiro = new char[][]{{'X','X','O'},{'O','X','O'},{'X','O','X'}};
-        tabuleiro = new char[][] { { 0, 'X', 'X' }, { 'O', 0, 'X' }, { 'X', 'O', 'O' } };
-
     }
 
-    public int getDimensao() {
-        return dimensao;
-    }
-
-    public char[][] getTabuleiro() {
-        return tabuleiro;
+    public int getJogadasRestantes() {
+        return jogadasRestantes;
     }
 
     public boolean realizaJogada(int x, int y, char valor) {
 
-        if (valor != 'X' || valor != 'O' || valor != 'x' || valor != 'o') {
+        if (jogadasRestantes == 0) {
 
+            System.out.println("Empate!");
+            return false;
+        }
+
+        String caracteresValidos = "XOxo";
+        if (caracteresValidos.indexOf(valor) == -1) {
+
+            System.out.println("Valor informado é invalido.");
             return false;
         }
 
         if (tabuleiro[x][y] == 0) {
 
             tabuleiro[x][y] = valor;
+            jogadasRestantes--;
             return true;
         }
 
+        System.out.println("Posição informada é inválida ou já está preenchida.");
         return false;
     }
 
@@ -103,7 +109,7 @@ public class JogoDaVelha {
             if (pontos == dimensao) {
 
                 jogadorGanhador = primeiroValor;
-               
+
                 System.out.println("Ganhou " + jogadorGanhador);
                 return true;
             }
@@ -208,10 +214,24 @@ public class JogoDaVelha {
         System.out.println("=============================");
         System.out.println();
 
+        System.out.print("    ");
+        for (int i = 0; i < tabuleiro.length; i++) {
+            System.out.print(i + "   ");
+        }
+       
+        System.out.println();
         for (int x = 0; x < tabuleiro.length; x++) {
+
+            System.out.print(x + " ");
             for (int y = 0; y < tabuleiro.length; y++) {
 
-                System.out.print(MessageFormat.format("| {0} ", tabuleiro[x][y]));
+                if (tabuleiro[x][y] == 0) {
+
+                    System.out.print(MessageFormat.format("| {0}  ", tabuleiro[x][y]));
+                } else {
+                    System.out.print(MessageFormat.format("| {0} ", tabuleiro[x][y]));
+                }
+
                 // System.out.print(MessageFormat.format("| {0}{1} ", x, y));
             }
             System.out.print("|");

@@ -2,15 +2,16 @@ package ADSLAB2TarefaM1;
 
 /**
  * 
-   [x] No construtor de jogador, receba parâmetros para inicializar o nome dos atributos,
-       e inicialize os pontos em zero
-   [x] Crie os métodos de acesso  
-   [x] Crie o toString 
+ * [x] No construtor de jogador, receba parâmetros para inicializar o nome dos
+ * atributos, e inicialize os pontos em zero 
+ * [x] Crie os métodos de acesso 
+ * [x]
+ * Crie o toString
  * 
  */
 
 public class Jogador {
-     
+
     private String nome;
     private int pontuacao = 0;
 
@@ -30,8 +31,8 @@ public class Jogador {
         return pontuacao;
     }
 
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
+    public void adicionaPonto() {
+        this.pontuacao = this.pontuacao + 1;
     }
 
     @Override
